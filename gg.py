@@ -18,31 +18,32 @@ def create_git_message(y,m,d):
     return f"""GIT_AUTHOR_DATE='{date_message}' GIT_COMMITTER_DATE='{date_message}' git commit -m 'added files'"""
 
 if __name__ == '__main__':
-    date = list(map(int, date))
-    if file:
-        subprocess.call('rm random.py', shell=True)
-        file = False
-    else:
-        subprocess.call('touch random.py', shell=True)
-        file = True
-    subprocess.call('git add -A', shell=True)
-    subprocess.call(create_git_message(*date), shell=True)
-    subprocess.call('git push', shell=True)
-
-
-
-    if random_number == count:
-        date = (datetime(*date) + timedelta(days=1))
-
-        if date.strftime('%w') == '6':
-            rand_range = (1,4)
+    while int(date[1]) != 5:
+        date = list(map(int, date))
+        if file:
+            subprocess.call('rm random.py', shell=True)
+            file = False
         else:
-            rand_range = (5,17)
-        date = date.strftime('%Y:%m:%d').split(':')
-        count = 0
-        random_number = random.randint(*rand_range)
+            subprocess.call('touch random.py', shell=True)
+            file = True
+        subprocess.call('git add -A', shell=True)
+        subprocess.call(create_git_message(*date), shell=True)
+        subprocess.call('git push', shell=True)
 
 
-    else:
-        count += 1
+
+        if random_number == count:
+            date = (datetime(*date) + timedelta(days=1))
+
+            if date.strftime('%w') == '6':
+                rand_range = (1,4)
+            else:
+                rand_range = (5,17)
+            date = date.strftime('%Y:%m:%d').split(':')
+            count = 0
+            random_number = random.randint(*rand_range)
+
+
+        else:
+            count += 1
 
