@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import subprocess
 import random
 
-date = [2021, 6, 11]
+date = [2021, 6, 22]
 count = 2
 random_number = 8
 file = False
@@ -28,7 +28,7 @@ if __name__ == '__main__':
             file = True
         subprocess.call('git add -A', shell=True)
         subprocess.call(create_git_message(*date), shell=True)
-        subprocess.call('git push', shell=True)
+
 
 
 
@@ -47,3 +47,4 @@ if __name__ == '__main__':
         else:
             count += 1
 
+    subprocess.call('git push', shell=True)
